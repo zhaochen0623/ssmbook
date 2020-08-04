@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aaa.spring.dao.BookDao">
+<!--    为dao接口的方法提供具体的SQL语句配置-->
+    <select id="selectBookById" resultType="Book" parameterType="long">
+        select book_id,name,number from book where book_id=#{bookId}
+    </select>
+
+    <select id="selectAll" resultType="Book">
+        select book_id,name,number from book group by book_id limit #{offset},#{limit}
+    </select>
+
+    <update id="reduceNumber">
+        update book set number = number -1 where book_id=#{bookId} and number > 0
+    </update>
+</mapper>
