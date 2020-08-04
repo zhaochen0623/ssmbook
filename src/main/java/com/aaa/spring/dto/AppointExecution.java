@@ -8,6 +8,7 @@ package com.aaa.spring.dto;
  **/
 
 import com.aaa.spring.entity.Appointment;
+import com.aaa.spring.enums.AppointStateEnum;
 
 /**
  * 封装预约执行后结果
@@ -26,16 +27,16 @@ public class AppointExecution {
     public AppointExecution() {
     }
     //预约成功的构造器
-    public AppointExecution(long bookId, int state, String stateInfo) {
+    public AppointExecution(long bookId, int state, AppointStateEnum appointStateEnum) {
         this.bookId = bookId;
-        this.state = state;
-        this.stateInfo = stateInfo;
+        this.state = appointStateEnum.getState();
+        this.stateInfo = appointStateEnum.getStateInfo();
     }
     //预约失败的构造器
-    public AppointExecution(long bookId, int state, String stateInfo, Appointment appointment) {
+    public AppointExecution(long bookId,AppointStateEnum appointStateEnum, Appointment appointment) {
         this.bookId = bookId;
-        this.state = state;
-        this.stateInfo = stateInfo;
+        this.state = appointStateEnum.getState();
+        this.stateInfo = appointStateEnum.getStateInfo();
         this.appointment = appointment;
     }
 
